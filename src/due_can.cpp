@@ -819,6 +819,8 @@ void CANRaw::mailbox_init(uint8_t uc_index)
 	m_pCan->CAN_MB[uc_index].CAN_MMR = 0;
 	m_pCan->CAN_MB[uc_index].CAN_MAM = 0;
 	m_pCan->CAN_MB[uc_index].CAN_MID = 0;
+	m_pCan->CAN_MB[uc_index].CAN_MFID = 0;
+	m_pCan->CAN_MB[uc_index].CAN_MSR = 0;
 	m_pCan->CAN_MB[uc_index].CAN_MDL = 0;
 	m_pCan->CAN_MB[uc_index].CAN_MDH = 0;
 	m_pCan->CAN_MB[uc_index].CAN_MCR = 0;
@@ -1194,8 +1196,10 @@ void  CANRaw::mailbox_set_rtr (uint8_t mbox,  uint8_t rtr)
 {
 	if (mbox >= CANMB_NUMBER)  mbox = CANMB_NUMBER - 1;
 
-	if (rtr)  m_pCan->CAN_MB[mbox].CAN_MSR |=  CAN_MSR_MRTR;
-	else      m_pCan->CAN_MB[mbox].CAN_MSR &= ~CAN_MSR_MRTR;
+	if (rtr)  m_pCan->CAN_MB[mbox].CAN_MCR |=  CAN_MCR_MRTR;
+	//else      m_pCan->CAN_MB[mbox].CAN_MCR &= ~CAN_MCR_MRTR;
+	//if (rtr)  m_pCan->CAN_MB[mbox].CAN_MSR |=  CAN_MSR_MRTR;
+	//else      m_pCan->CAN_MB[mbox].CAN_MSR &= ~CAN_MSR_MRTR;
 }
 
 /**
